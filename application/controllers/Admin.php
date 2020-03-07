@@ -31,7 +31,7 @@ class Admin extends CI_Controller {
         //load library
         $this->load->library('pagination');
         //config pagination
-        $config['base_url'] = 'http://localhost/kartini/admin/daftar_guru/index';
+        $config['base_url'] = 'http://localhost/projek/kartini/admin/daftar_guru/index';
         $config['total_rows'] = $this->Admin_model->countAllGuru();
         $config['per_page'] = 5;
         $config['num_links'] = 5; //untuk pagination kanan 5 kiri 5
@@ -175,6 +175,9 @@ class Admin extends CI_Controller {
     }
     public function tambah_guru()
     {
+        $data['user'] = $this->db->get_where('user', ['nomor_induk' => $this->session->userdata('nomor_induk')])->row_array();
+        $data['title'] = 'Tambah Guru';
+        $data['kelas'] = $this->Admin_model->kelas();
         $this->form_validation->set_rules('nig','NIG','required|trim|is_unique[guru.nig]|min_length[5]|max_length[5]',[
             'is_unique' => 'this NIG has already registered!',
             'min_length' => 'Password too short !',
@@ -183,8 +186,6 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules('name','Username','required|trim');    
         if ($this->form_validation->run() == false) {
             # code...
-            $data['user'] = $this->db->get_where('user', ['nomor_induk' => $this->session->userdata('nomor_induk')])->row_array();
-            $data['title'] = 'Tambah Guru';
             $this->load->view('templates/header_index', $data);
             $this->load->view('templates/sidebar_index', $data);
             $this->load->view('templates/topbar_index', $data);
@@ -207,11 +208,12 @@ class Admin extends CI_Controller {
     }
     public function detail($nama,$id,$role_id)
     {
+        $data['user'] = $this->db->get_where('user', ['nomor_induk' => $this->session->userdata('nomor_induk')])->row_array();
+        $data['detail'] = $this->Admin_model->detail($nama,$role_id,$id);
+        $data['kelas'] = $this->Admin_model->joinKelas($id);
+        $data['title'] = 'Detail';
         if ($role_id === '2') {
             # code...
-            $data['user'] = $this->db->get_where('user', ['nomor_induk' => $this->session->userdata('nomor_induk')])->row_array();
-            $data['detail'] = $this->Admin_model->detail($nama,$role_id,$id);
-            $data['title'] = 'Detail';
             $this->load->view('templates/header_index', $data);
             $this->load->view('templates/sidebar_index', $data);
             $this->load->view('templates/topbar_index', $data);
@@ -219,13 +221,10 @@ class Admin extends CI_Controller {
             $this->load->view('templates/footer_index', $data);
         } elseif ($role_id === '3') {
             # code...
-            $data['user'] = $this->db->get_where('user', ['nomor_induk' => $this->session->userdata('nomor_induk')])->row_array();
-            $data['detail'] = $this->Admin_model->detail($nama,$role_id,$id);
-            $data['title'] = 'Detail';
             $this->load->view('templates/header_index', $data);
             $this->load->view('templates/sidebar_index', $data);
             $this->load->view('templates/topbar_index', $data);
-            $this->load->view('admin/detail_guru', $nama,$data,$role_id);
+            $this->load->view('admin/detail_guru', $data,$nama,$id,$role_id);
             $this->load->view('templates/footer_index', $data);
         }
     }
@@ -233,6 +232,7 @@ class Admin extends CI_Controller {
     {
         $data['user'] = $this->db->get_where('user', ['nomor_induk' => $this->session->userdata('nomor_induk')])->row_array();
         $data['getUser'] = $this->Admin_model->getUserById($nama,$role_id,$id);
+        $data['kelas'] = $this->Admin_model->kelas();
         $data['title'] = 'Form Edit';
         $this->form_validation->set_rules('nama','Nama', 'required');
         if ($this->form_validation->run() == false ) {
@@ -394,7 +394,7 @@ class Admin extends CI_Controller {
     {
         $data['user'] = $this->db->get_where('user', ['nomor_induk' => $this->session->userdata('nomor_induk')])->row_array();
         $data['title'] = 'MATA PELAJARAN';
-        $data['getMapel'] = $this->Admin_model->getAllMapel();
+        $data['JoinMapel'] = $this->Admin_model->JoinMapel();
         $this->load->view('templates/header_index', $data);
         $this->load->view('templates/sidebar_index', $data);
         $this->load->view('templates/topbar_index', $data);

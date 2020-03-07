@@ -37,12 +37,12 @@
               <form class="user" method="post" action="<?= base_url('login/registrasi'); ?>">
                 <div class="form-group row">
                   <div class="col mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="name" placeholder="Username" name="name">
+                    <input type="text" class="form-control form-control-user" id="name" placeholder="Username" name="name" autocomplete="off">
                     <?= form_error('username','<small class="text-danger pl-3">','</small>'); ?>
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="number" class="form-control form-control-user" id="nomor_induk" name="nomor_induk" placeholder="Enter NOMOR INDUK">
+                  <input type="number" class="form-control form-control-user" id="nomor_induk" name="nomor_induk" placeholder="Enter NOMOR INDUK" autocomplete="off">
                   <?= form_error('nomor_induk','<small class="text-danger pl-3">','</small>'); ?>
                 </div>
                 <div class="form-group row">

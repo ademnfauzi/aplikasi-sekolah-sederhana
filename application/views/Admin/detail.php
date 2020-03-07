@@ -10,7 +10,7 @@
     </li>
     <li>
     <label for="nama">NAMA :</label>
-      <?= $detail['nama'];  ?>
+      <?= $detail['nama_siswa'];  ?>
     </li>
     <li>
     <label for="kelas">KELAS :</label>

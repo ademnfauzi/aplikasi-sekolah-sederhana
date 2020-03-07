@@ -10,7 +10,7 @@
                 <div class="form-group">
                 <input type="hidden" name="id" value="<?= $getUser['id']; ?>">
                     <label for="nama">NAMA :</label>
-                    <input type="text" class="form-control" id="nama" name="nama" value="<?= $getUser['nama']; ?>">
+                    <input type="text" class="form-control" id="nama" name="nama" value="<?= $getUser['nama_siswa']; ?>">
                     <small id="emailHelp" class="form-text text-danger"><?= form_error('nama'); ?></small>
                 </div>
                 <div class="form-group">

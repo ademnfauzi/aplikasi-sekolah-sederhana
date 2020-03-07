@@ -19,7 +19,7 @@
                 </div>
             </form>
     <br>
-    <?php if( empty($guru)) : ?>
+    <?php if(empty($guru)) : ?>
         <div class="alert alert-danger" role="alert">
             Data tidak ditemukan !
         </div>

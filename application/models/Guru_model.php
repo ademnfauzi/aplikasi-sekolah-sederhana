@@ -30,11 +30,19 @@ class Guru_model extends CI_Model
 
     public function joinUserDanGuru()
     {
-        $this->db->select('id,nig,nama_guru,walas,nomor_induk,nama_kelas');
+        $this->db->select('id,nig,nama_guru,walas,nomor_induk');
         $this->db->from('guru');
-        $this->db->join('user', 'user.nomor_induk =  guru.nig');
-        $this->db->join('kelas', 'kelas.id_kelas =  guru.walas');
+        $this->db->join('user', 'user.nomor_induk = guru.nig');
         $this->db->where('guru.nig', $this->session->userdata('nomor_induk'));
+        $query = $this->db->get();
+        return $query->row_array();
+        
+    }
+    public function getSiswaById($nis,$nama,$kelas)
+    {
+        $this->db->select('*');
+        $this->db->from('siswa');
+        $this->db->where('nis',$nis);
         $query = $this->db->get();
         return $query->row_array();
     }

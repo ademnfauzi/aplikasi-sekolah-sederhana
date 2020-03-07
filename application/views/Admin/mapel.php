@@ -24,18 +24,19 @@
     </thead>
     <tbody>
         <tr>
-        <?php foreach($getMapel as $mapel) : ?>
-            <td><?= $mapel['id_mapel']; ?></td>
-            <td><?= $mapel['nama_mapel']; ?></td>
-            <td><?= $mapel['ket']; ?></td>
-            <td><?= $mapel['id_guru']; ?></td>
+        <?php foreach($JoinMapel as $mapel) : ?>
+            <td><?= $mapel->id_mapel; ?></td>
+            <td><?= $mapel->nama_mapel; ?></td>
+            <td><?= $mapel->ket; ?></td>
+            <td><?= $mapel->nama_guru; ?></td>
             <td>
-            <a href="<?= base_url('admin/hapus_mapel'); ?>/<?= $mapel['id_mapel']; ?>/<?= $mapel['nama_mapel']; ?>" class="badge badge-danger " onclick ="return confirm('yakin akan menghapusnya ?')">HAPUS</a>
-            <a href="<?= base_url('admin/edit_mapel'); ?>/<?= $mapel['id_mapel']; ?>/<?= $mapel['nama_mapel']; ?>" class="badge badge-warning  mr-2">EDIT</a>
+            <a href="<?= base_url('admin/hapus_mapel'); ?>/<?= $mapel->id_mapel; ?>/<?= $mapel->nama_mapel; ?>" class="badge badge-danger " onclick ="return confirm('yakin akan menghapusnya ?')">HAPUS</a>
+            <a href="<?= base_url('admin/edit_mapel'); ?>/<?= $mapel->id_mapel; ?>/<?= $mapel->nama_mapel; ?>" class="badge badge-warning  mr-2">EDIT</a>
             </td>
         </tr>
         <?php endforeach; ?>
     </tbody>
+</div>
   </table>
 </div>
 

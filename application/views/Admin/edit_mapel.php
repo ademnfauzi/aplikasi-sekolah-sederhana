@@ -26,7 +26,7 @@
                 <select name="id_guru" id="id_guru" class="btn btn-secondary dropdown-toogle" required>
                     <option value="">PILIH GURU</option>
                     <?php foreach($addGuru as $guru) : ?>
-                    <option value="<?= $guru->nig; ?>"><?= $guru->nama; ?></option>
+                    <option value="<?= $guru->nig; ?>"><?= $guru->nama_guru; ?></option>
                     <?php endforeach; ?>
                 </select>
                   <?= form_error('keterangan','<small class="text-danger pl-3">','</small>'); ?>

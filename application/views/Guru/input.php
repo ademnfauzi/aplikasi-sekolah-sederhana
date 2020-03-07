@@ -3,12 +3,18 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">INPUT NILAI SISWA</h1>
+          <h1 class="h3 mb-4 text-gray-800"><b> INPUT NILAI SISWA </b></h1>
          
           <table>
-            <ul>
-              <!-- <li>NAMA : <?= $query['nama']; ?></li>
-              <li>NIS : <?= $user['nomor_induk']; ?></li> -->
+            <ul><b>
+              <li>
+                <label for="nama" class="">Nama  :</label>
+                    <?= $siswa['nama_siswa'];  ?> 
+              </li>
+              <li>
+                <label for="nis" class="">NIS  :</label>
+                <?= $siswa['nis'];  ?> </b>
+              </li>
             </ul>
 
           </table>

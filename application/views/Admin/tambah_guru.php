@@ -13,7 +13,15 @@
                   <?= form_error('nig','<small class="text-danger pl-3">','</small>'); ?>
                 </div>
                 <div class="form-group">  
-      </div>
+                <select name="walas" id="walas" class="btn btn-secondary dropdown-toogle" required>
+                    <option value="">-WALAS-</option>
+                    <?php foreach($kelas as $k) : ?>
+                    <option value="<?= $k->id_kelas; ?>"><?= $k->nama_kelas; ?></option>
+                    <?php endforeach; ?>
+                    <option value="NULL">TIDAK MENJADI WALAS</option>
+                </select>
+                  <?= form_error('walas','<small class="text-danger pl-3">','</small>'); ?>
+                </div>
       <div class="modal-footer">
         <a href="<?= base_url('admin/daftar_guru') ?>" class="btn btn-warning">Close</a>
         <button type="submit" class="btn btn-primary">Create</button>

@@ -84,7 +84,7 @@ class Login extends CI_Controller {
             $this->Login_model->insertData();
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Congratulations! your account has been created. SETELAH MELAKUKAN REGISTRASI PASTIKAN DATA SAMA DENGAN YANG ADA PADA DAFTAR
             </ul></div>');
-            redirect('login');
+            redirect('admin');
         }
     }
 

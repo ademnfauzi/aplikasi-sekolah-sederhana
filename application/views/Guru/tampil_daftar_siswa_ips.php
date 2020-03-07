@@ -11,14 +11,13 @@
 </div>
 </div>
 
-
     <div class="row mt-3">
         <div class="col-md-6">
            <ul class="list-group">
             <?php foreach($siswaIPS as $s) : ?>
             <li class="list-group-item">
                 <?= $s->nama_siswa; ?>
-                <!-- <a href="<?= base_url('guru/input') ?>/<?= $s->nis;  ?>/<?= $s->nama_siswa;?>/<?= $s->kelas; ?>" class=" badge badge-warning float-right mr-1">INPUT NILAI</a> -->
+                <a href="<?= base_url('guru/input') ?>/<?= $s->nis;  ?>/<?= $s->nama_siswa;?>/<?= $s->kelas; ?>" class=" badge badge-warning float-right mr-1">INPUT NILAI</a>
             </li>
             <?php endforeach; ?>
         </ul>

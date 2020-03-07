@@ -45,18 +45,22 @@ class Admin_model extends CI_Model
     {
         $keyword = $this->input->post('keyword', true);
         $this->db->like('nig', $keyword);
-        $this->db->or_like('nama', $keyword);
+        $this->db->or_like('nama_guru', $keyword);
         return $this->db->get('guru')->result_array();
     }
     public function countAllGuru()
     {
         return $this->db->get('guru')->num_rows();
     }
+    public function countAllMapel()
+    {
+        return $this->db->get('mapel')->num_rows();
+    }
     public function insertDataSiswa()
     {
     $data = [
         'nis' => htmlspecialchars($this->input->post('nis',true)),
-        'nama' => htmlspecialchars($this->input->post('name',true)),
+        'nama_siswa' => htmlspecialchars($this->input->post('name',true)),
         'kelas' => htmlspecialchars($this->input->post('kelas',true)),
         'role_id' => 2
     ];
@@ -67,7 +71,7 @@ class Admin_model extends CI_Model
     {
     $data = [
         'nig' => htmlspecialchars($this->input->post('nig',true)),
-        'nama' => htmlspecialchars($this->input->post('name',true)),
+        'nama_guru' => htmlspecialchars($this->input->post('name',true)),
         'role_id' => 3
     ];
     $this->db->insert('guru', $data);
@@ -139,7 +143,7 @@ class Admin_model extends CI_Model
     {
         if ($role_id === '2') {
             $data = [
-                'nama' => $this->input->post('nama', true),
+                'nama_siswa' => $this->input->post('nama', true),
                 'nis' => $this->input->post('nis', true),
                 'kelas' => $this->input->post('kelas',true)
             ];
@@ -148,8 +152,9 @@ class Admin_model extends CI_Model
         } 
         elseif ($role_id === '3') {            
             $data = [
-                'nama' => $this->input->post('nama', true),
-                'nig' => $this->input->post('nig', true)
+                'nama_guru' => $this->input->post('nama', true),
+                'nig' => $this->input->post('nig', true),
+                'walas' => htmlspecialchars($this->input->post('walas',true))
             ];
             $this->db->where('id', $this->input->post('id'));
             $this->db->update('guru', $data);
@@ -216,15 +221,14 @@ class Admin_model extends CI_Model
         $this->db->insert('user_sub_menu',$data);
         
     }
-    //gagal pas dicoba gakeluar hasilnya
-    // public function daftar_mapel()
-    // {
-    //     $this->db->select('id_mapel,nama_mapel,ket,nama');
-    //     $this->db->from('mapel');
-    //     $this->db->join('guru', 'guru.id = mapel.id_mapel');
-    //     $query = $this->db->get();
-    //     return $query->result();
-    // }
+    public function JoinMapel()
+    {
+        $this->db->select('id_mapel,nama_mapel,ket,nama_guru');
+        $this->db->from('mapel');
+        $this->db->join('guru', 'guru.nig = mapel.id_guru');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
     public function hapus_mapel($id_mapel,$nama_mapel)
     {
@@ -287,6 +291,22 @@ class Admin_model extends CI_Model
         $this->db->from('berita');
         $query = $this->db->get();
         return $query->result();
+    }
+    public function kelas()
+    {
+        $this->db->select('*');
+        $this->db->from('kelas');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function joinKelas($id)
+    {
+        $this->db->select('id,nig,nama_guru,nama_kelas');
+        $this->db->from('guru');
+        $this->db->join('kelas', 'kelas.id_kelas = guru.walas');
+        $this->db->where('guru.id', $id);
+        $query = $this->db->get();
+        return $query->row_array();
     }
 
 }

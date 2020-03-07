@@ -1,5 +1,6 @@
 <div class="container">
 <h1><b>DASHBOARD ADMIN</b></h1>
+<?= $this->session->flashdata('message'); ?>
 <div class="create">
     <a class="btn btn-primary" href="<?= base_url(); ?>admin/registrasi">Create an Account for Login</a>
 </div>
