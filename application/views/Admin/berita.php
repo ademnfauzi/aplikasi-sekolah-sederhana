@@ -11,7 +11,7 @@
             <?php foreach($berita as $b) : ?>
             <li class="list-group-item">
                 <?= $b['title']; ?>
-                <a href="<?= base_url(); ?>admin/hapus/<?= $b['id']; ?>" class="badge badge-danger float-right" onclick ="return confirm('yakin akan menghapusnya ?')">HAPUS</a>
+                <a href="<?= base_url(); ?>admin/hapus_berita/<?= $b['id']; ?>" class="badge badge-danger float-right" onclick ="return confirm('yakin akan menghapusnya ?')">HAPUS</a>
                 <a href="<?= base_url(); ?>admin/getBeritaByTitle/<?= $b['id']; ?>" class=" badge badge-info float-right mr-1">DETAIL</a>
             </li>
             <?php endforeach; ?>

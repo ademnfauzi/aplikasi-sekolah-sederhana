@@ -202,6 +202,13 @@ class Admin extends CI_Controller {
         $this->Admin_model->hapus_sub_menu($id);
     }
 
+    public function hapus_berita($id)
+    {
+        $this->db->delete('berita',['id' => $id]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Success Delete!</div>');
+        redirect('admin/berita');
+        return true;   
+    }
     public function hapus($nama,$id,$role_id)
     {
         $this->Admin_model->hapus($nama,$id,$role_id);
